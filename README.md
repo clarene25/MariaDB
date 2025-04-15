@@ -22,24 +22,33 @@ Steps to install and configure an apache server
 <br />
 <br />
    <p align="left">
-1. dnf install -y httpd<br />
-  <br />
-2. add ports to the firewall<br />
- -	a. firewall-cmd --zone public --add-port {80,443}/tcp --permanent
-  <br />
-  - b. firewall-cmd --reload
-<br/>
-<br/>
-3. add service http or https to the firewall<br />
- -	a. firewall-cmd --zone public --add-service http --permanent
-  <br />
-  - b. firewall-cmd --reload
-<br />
-<br />
-4. systemctl restart httpd
-<br />
-<br />
-5. apache config files are under can be located under /etc/http/ and /var/www/html/
+1. Set up the repository for Maria DB Project<br />
+  
+  - vi /etc/yum.repos.d/MariaDB.repo (and copy below contents in file)<br />
+    <br />
+[mariadb] <br />
+name=MariaDB-10.7.8<br />
+baseurl=http://archive.mariadb.org/mariadb-10.7.8/yum/centos/$releasever/$basearch<br />
+gpgkey=https://archive.mariadb.org/PublicKey<br />
+gpgcheck=1<br />
+
+2. Install mariadb Server and msql client<br />
+
+- yum install MariaDB-server MariaDB-client<br />
+
+3. Start and enable mariadb server<br />
+- systemctl enable mariadb -y<br />
+- systemctl start mariadb<br />
+- systemctl status mariadb<br />
+
+ 4. Configuring MariaDB<br />
+- the last step is to run the mysql_secure_installation script which will perform several security related tasks:<br />
+mariadb-secure-installation<br />
+- test by connecting mysql client with mariadb server<br />
+- mysql -u root -p
+
+
+
 
 
 
