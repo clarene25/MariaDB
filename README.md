@@ -42,7 +42,7 @@ gpgcheck=1<br />
 - systemctl status mariadb<br />
 
  4. Configuring MariaDB<br />
-- the last step is to run the mysql_secure_installation script which will perform several security related tasks:<br />
+- run the mysql_secure_installation script which will perform several security related tasks:<br />
 mariadb-secure-installation<br />
 - test by connecting mysql client with mariadb server<br />
 - mysql -u root -p
